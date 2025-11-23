@@ -611,16 +611,6 @@
                 duration: '3 months'
             },
             {
-                id: 5,
-                title: 'Karunia Auto Car',
-                shortDesc: 'Management platform for Karunia Auto Car.',
-                fullDesc: 'Car management platform to track cars, owners, and maintenance costs for Karunia Auto Car.',
-                techStack: ['Laravel', 'MySQL', 'Livewire'],
-                images: ['dist/img/portfolio/kac/1.png', 'dist/img/portfolio/kac/2.png', 'dist/img/portfolio/kac/3.png'],
-                link: 'https://showroom-production-064f.up.railway.app/',
-                duration: '1 month'
-            },
-            {
                 id: 6,
                 title: 'Car Service Management',
                 shortDesc: 'Service reservation system for car body & paint workshop.',
@@ -665,132 +655,139 @@
 
         <!-- Portfolio Grid -->
         <!-- Project Grid -->
-        <div class="container mx-auto px-4 py-8">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <template x-for="project in projects" :key="project.id">
-                    <div @click="selectedProject = project; isModalOpen = true; currentImageIndex = 0"
-                        class="bg-white rounded-xl shadow-lg overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-xl cursor-pointer">
-                        <div class="relative h-48 overflow-hidden">
-                            <img :src="project.images[0]" :alt="project.title" class="w-full h-full object-cover">
-                        </div>
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold text-gray-800 mb-2" x-text="project.title"></h3>
-                            <p class="text-gray-600 mb-4" x-text="project.shortDesc"></p>
-                            <div class="flex flex-wrap gap-2">
-                                <template x-for="tech in project.techStack.slice(0, 3)" :key="tech">
-                                    <span class="px-3 py-1 text-sm bg-blue-100 text-blue-600 rounded-full"
-                                        x-text="tech"></span>
-                                </template>
-                            </div>
-                        </div>
-                    </div>
-                </template>
+        <section id="portfolio">
+            <div class="text-center mb-16">
+                <span class="font-bold uppercase text-primary text-sm tracking-wider mb-2 block">Portfolio</span>
+                <h2 class="font-bold text-dark text-3xl lg:text-4xl">My Recent Projects</h2>
             </div>
-
-            <!-- Modal -->
-            <div x-show="isModalOpen" x-transition:enter="transition ease-out duration-300"
-                x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
-                x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100"
-                x-transition:leave-end="opacity-0"
-                class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
-                <div @click.away="isModalOpen = false"
-                    class="bg-white rounded-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
-                    <!-- Modal Header -->
-                    <div class="sticky top-0 bg-white z-10 p-4 border-b flex justify-between items-center">
-                        <h2 class="text-2xl font-bold text-gray-800" x-text="selectedProject?.title"></h2>
-                        <button @click="isModalOpen = false"
-                            class="p-2 hover:bg-gray-100 rounded-full transition-colors">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
-                                viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M6 18L18 6M6 6l12 12" />
-                            </svg>
-                        </button>
-                    </div>
-
-                    <!-- Image Carousel -->
-                    <div class="relative">
-                        <div class="aspect-video relative">
-                            <img :src="selectedProject?.images[currentImageIndex]"
-                                :alt="`${selectedProject?.title} screenshot ${currentImageIndex + 1}`"
-                                class="w-full h-full object-cover">
-                            <!-- Navigation Buttons -->
-                            <div class="absolute inset-0 flex items-center justify-between p-4">
-                                <button
-                                    @click.stop="currentImageIndex = currentImageIndex === 0 ? selectedProject.images.length - 1 : currentImageIndex - 1"
-                                    class="p-2 bg-white/80 rounded-full hover:bg-white transition-colors">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
-                                        viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M15 19l-7-7 7-7" />
-                                    </svg>
-                                </button>
-                                <button
-                                    @click.stop="currentImageIndex = currentImageIndex === selectedProject.images.length - 1 ? 0 : currentImageIndex + 1"
-                                    class="p-2 bg-white/80 rounded-full hover:bg-white transition-colors">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
-                                        viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M9 5l7 7-7 7" />
-                                    </svg>
-                                </button>
+            <div class="container mx-auto px-4 py-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <template x-for="project in projects" :key="project.id">
+                        <div @click="selectedProject = project; isModalOpen = true; currentImageIndex = 0"
+                            class="bg-white rounded-xl shadow-lg overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-xl cursor-pointer">
+                            <div class="relative h-48 overflow-hidden">
+                                <img :src="project.images[0]" :alt="project.title"
+                                    class="w-full h-full object-cover">
+                            </div>
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold text-gray-800 mb-2" x-text="project.title"></h3>
+                                <p class="text-gray-600 mb-4" x-text="project.shortDesc"></p>
+                                <div class="flex flex-wrap gap-2">
+                                    <template x-for="tech in project.techStack.slice(0, 3)" :key="tech">
+                                        <span class="px-3 py-1 text-sm bg-blue-100 text-blue-600 rounded-full"
+                                            x-text="tech"></span>
+                                    </template>
+                                </div>
                             </div>
                         </div>
+                    </template>
+                </div>
 
-                        <!-- Image Indicators -->
-                        <div class="flex justify-center gap-2 mt-4">
-                            <template x-for="(_, index) in selectedProject?.images" :key="index">
-                                <button @click="currentImageIndex = index"
-                                    class="w-2 h-2 rounded-full transition-colors"
-                                    :class="index === currentImageIndex ? 'bg-blue-600' : 'bg-gray-300'"></button>
-                            </template>
+                <!-- Modal -->
+                <div x-show="isModalOpen" x-transition:enter="transition ease-out duration-300"
+                    x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+                    x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100"
+                    x-transition:leave-end="opacity-0"
+                    class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+                    <div @click.away="isModalOpen = false"
+                        class="bg-white rounded-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+                        <!-- Modal Header -->
+                        <div class="sticky top-0 bg-white z-10 p-4 border-b flex justify-between items-center">
+                            <h2 class="text-2xl font-bold text-gray-800" x-text="selectedProject?.title"></h2>
+                            <button @click="isModalOpen = false"
+                                class="p-2 hover:bg-gray-100 rounded-full transition-colors">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                            </button>
                         </div>
-                    </div>
 
-                    <!-- Project Details -->
-                    <div class="p-6 space-y-6">
-                        <!-- Link Section (Optional) -->
-                        <template x-if="selectedProject?.link">
-                            <div>
-                                <h4 class="text-lg font-semibold text-gray-800 mb-2">Project Link</h4>
-                                <a :href="selectedProject.link" target="_blank" rel="noopener noreferrer"
-                                    class="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700">
-                                    Visit Project
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
-                                        viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                                    </svg>
-                                </a>
+                        <!-- Image Carousel -->
+                        <div class="relative">
+                            <div class="aspect-video relative">
+                                <img :src="selectedProject?.images[currentImageIndex]"
+                                    :alt="`${selectedProject?.title} screenshot ${currentImageIndex + 1}`"
+                                    class="w-full h-full object-cover">
+                                <!-- Navigation Buttons -->
+                                <div class="absolute inset-0 flex items-center justify-between p-4">
+                                    <button
+                                        @click.stop="currentImageIndex = currentImageIndex === 0 ? selectedProject.images.length - 1 : currentImageIndex - 1"
+                                        class="p-2 bg-white/80 rounded-full hover:bg-white transition-colors">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+                                            viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M15 19l-7-7 7-7" />
+                                        </svg>
+                                    </button>
+                                    <button
+                                        @click.stop="currentImageIndex = currentImageIndex === selectedProject.images.length - 1 ? 0 : currentImageIndex + 1"
+                                        class="p-2 bg-white/80 rounded-full hover:bg-white transition-colors">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+                                            viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M9 5l7 7-7 7" />
+                                        </svg>
+                                    </button>
+                                </div>
                             </div>
-                        </template>
 
-                        <!-- Description -->
-                        <div>
-                            <h4 class="text-lg font-semibold text-gray-800 mb-2">Project Description</h4>
-                            <p class="text-gray-600" x-text="selectedProject?.fullDesc"></p>
-                        </div>
-
-                        <!-- Duration -->
-                        <div>
-                            <h4 class="text-lg font-semibold text-gray-800 mb-2">Duration</h4>
-                            <p class="text-gray-600" x-text="selectedProject?.duration"></p>
-                        </div>
-
-                        <!-- Tech Stack -->
-                        <div>
-                            <h4 class="text-lg font-semibold text-gray-800 mb-2">Technologies Used</h4>
-                            <div class="flex flex-wrap gap-2">
-                                <template x-for="tech in selectedProject?.techStack" :key="tech">
-                                    <span class="px-3 py-1 text-sm bg-blue-100 text-blue-600 rounded-full"
-                                        x-text="tech"></span>
+                            <!-- Image Indicators -->
+                            <div class="flex justify-center gap-2 mt-4">
+                                <template x-for="(_, index) in selectedProject?.images" :key="index">
+                                    <button @click="currentImageIndex = index"
+                                        class="w-2 h-2 rounded-full transition-colors"
+                                        :class="index === currentImageIndex ? 'bg-blue-600' : 'bg-gray-300'"></button>
                                 </template>
+                            </div>
+                        </div>
+
+                        <!-- Project Details -->
+                        <div class="p-6 space-y-6">
+                            <!-- Link Section (Optional) -->
+                            <template x-if="selectedProject?.link">
+                                <div>
+                                    <h4 class="text-lg font-semibold text-gray-800 mb-2">Project Link</h4>
+                                    <a :href="selectedProject.link" target="_blank" rel="noopener noreferrer"
+                                        class="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700">
+                                        Visit Project
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
+                                            viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                                        </svg>
+                                    </a>
+                                </div>
+                            </template>
+
+                            <!-- Description -->
+                            <div>
+                                <h4 class="text-lg font-semibold text-gray-800 mb-2">Project Description</h4>
+                                <p class="text-gray-600" x-text="selectedProject?.fullDesc"></p>
+                            </div>
+
+                            <!-- Duration -->
+                            <div>
+                                <h4 class="text-lg font-semibold text-gray-800 mb-2">Duration</h4>
+                                <p class="text-gray-600" x-text="selectedProject?.duration"></p>
+                            </div>
+
+                            <!-- Tech Stack -->
+                            <div>
+                                <h4 class="text-lg font-semibold text-gray-800 mb-2">Technologies Used</h4>
+                                <div class="flex flex-wrap gap-2">
+                                    <template x-for="tech in selectedProject?.techStack" :key="tech">
+                                        <span class="px-3 py-1 text-sm bg-blue-100 text-blue-600 rounded-full"
+                                            x-text="tech"></span>
+                                    </template>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
     </div>
 
 
